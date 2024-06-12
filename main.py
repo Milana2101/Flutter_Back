@@ -53,9 +53,9 @@ async def chat(request: Request):
     if data is None:
         return response.json({"status": "bad"})
 
-    expenses = data.get("spendings")
-    budget = data.get("budget")
-    country = "US"
+    expenses = data.get("spendings") if data.get("spendings") else "Not provided" 
+    budget = data.get("budget") if data.get("budget") else "Not provided"
+    country = data.get("country") if data.get("country") else "US"
 
     _response = None
     async with aiohttp.ClientSession() as session:
